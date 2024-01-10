@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 
 // Adding Context Class
 public class ShopContext: DbContext
@@ -8,9 +9,12 @@ public class ShopContext: DbContext
     public DbSet<Product> Products {get;set;}
     public DbSet<Category> Categories {get;set;}
 
+    public static readonly ILoggerFactory MyLoggerFactory = LoggerFactory.Create(builder => { builder.AddConsole(); }); // LINQ to SQL at Console
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-    {
-        optionsBuilder.UseSqlite("Data Source=shop.db");
+    {      
+        optionsBuilder
+        .UseLoggerFactory(MyLoggerFactory)
+        .UseSqlite("Data Source=shop.db");
     }
 }
 
@@ -35,14 +39,36 @@ public class Category
 
 class Program
 {
-    static void Main()
+    static void AddProducts()
     {
         using (var db = new ShopContext())
         {
-            var p = new Product {Name = "Monster Notebook", Price=30000};  
-            db.Products.Add(p);
+            var products = new List<Product>()
+            {
+                new Product { Name = "IPhone 12", Price = 3000 },
+                new Product { Name = "IPhone 13", Price = 4000 },
+                new Product { Name = "IPhone 14", Price = 5000 },
+            };
+
+            db.Products.AddRange(products); // AddRange for Collection
             db.SaveChanges();   
-            Console.WriteLine("Veriler Eklendi...");   
+            Console.WriteLine("Data Added.");   
         }
+    }
+
+    static void AddProduct()
+    {
+        using (var db = new ShopContext())
+        {
+            var p = new Product { Name = "IPhone 12", Price = 3000 };
+            db.Products.Add(p); // AddRange for Collection
+            db.SaveChanges();   
+            Console.WriteLine("Data Added.");   
+        }
+    }
+
+    static void Main()
+    {
+        AddProduct();
     }
 }

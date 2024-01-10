@@ -19,3 +19,7 @@ dotnet add package Microsoft.EntityFrameworkCore.Design
 dotnet ef migrations add InitialCreate
 dotnet ef database update
 ```
+### Microsoft.Extensions.Logging.Console
+```
+dotnet add package Microsoft.Extensions.Logging.Console --version 8.0.0
+```

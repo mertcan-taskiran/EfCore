@@ -120,3 +120,8 @@ C:\Users\ihmf_\Desktop\EfCore\bin\Debug\net8.0\tr\Microsoft.CodeAnalysis.Workspa
 C:\Users\ihmf_\Desktop\EfCore\bin\Debug\net8.0\zh-Hans\Microsoft.CodeAnalysis.Workspaces.resources.dll
 C:\Users\ihmf_\Desktop\EfCore\bin\Debug\net8.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.resources.dll
 C:\Users\ihmf_\Desktop\EfCore\obj\Debug\net8.0\EfCore.sourcelink.json
+C:\Users\ihmf_\Desktop\EfCore\bin\Debug\net8.0\Microsoft.Extensions.Configuration.dll
+C:\Users\ihmf_\Desktop\EfCore\bin\Debug\net8.0\Microsoft.Extensions.Configuration.Binder.dll
+C:\Users\ihmf_\Desktop\EfCore\bin\Debug\net8.0\Microsoft.Extensions.Logging.Configuration.dll
+C:\Users\ihmf_\Desktop\EfCore\bin\Debug\net8.0\Microsoft.Extensions.Logging.Console.dll
+C:\Users\ihmf_\Desktop\EfCore\bin\Debug\net8.0\Microsoft.Extensions.Options.ConfigurationExtensions.dll
