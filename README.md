@@ -1,6 +1,8 @@
-# .Net Core - ORM - Entity Framework
+# Basic Use of the Entity Framework 
 
-## Run the following commands:
+## .Net Core - ORM - Entity Framework
+
+> Run the following commands:
 
 ### New .Net Project
 ```
