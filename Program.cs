@@ -123,8 +123,23 @@ class Program
         }
     }
 
+    static void UpdateProduct(int id)
+    {   
+        using(var db = new ShopContext())
+        {
+            // Change tracking
+            var p = db.Products.Where(i=>i.Id == id).FirstOrDefault();
+            if (p != null)
+            {
+                p.Price *= 1.5m;
+                db.SaveChanges();
+                Console.WriteLine("Updated.");
+            }
+        }
+    }
+
     static void Main()
     {
-        GetProductByName("12");
+        UpdateProduct(4);
     }
 }
