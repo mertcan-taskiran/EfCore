@@ -138,8 +138,28 @@ class Program
         }
     }
 
+    static void DeleteProduct(int id)
+    {   
+        using(var db = new ShopContext())
+        {
+            var p = db.Products.FirstOrDefault(i=>i.Id == id);
+            if (p != null)
+            {
+                db.Products.Remove(p);
+                db.SaveChanges();
+                Console.WriteLine("Deleted.");
+            }
+        }
+    }
+
     static void Main()
     {
-        UpdateProduct(4);
+        // AddProducts();
+        // AddProduct();
+        // GetAllProducts();
+        // GetProductById(0);
+        // GetProductByName("IPhone");
+        // UpdateProduct(0);
+        // DeleteProduct(0);
     }
 }
