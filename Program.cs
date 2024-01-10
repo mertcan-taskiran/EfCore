@@ -67,8 +67,64 @@ class Program
         }
     }
 
+    static void GetAllProducts()
+    {
+        using (var context = new ShopContext())
+        {
+            var products = context
+                .Products
+                .Select(p => 
+                    new {
+                        p.Name, p.Price
+                    })
+                .ToList();
+
+            foreach (var p in products)
+            {
+                Console.WriteLine($"Name: {p.Name} Price: {p.Price}");
+            }
+        }
+    }
+
+    static void GetProductById(int id)
+    {
+        using (var context = new ShopContext())
+        {
+            var product = context
+                .Products
+                .Where(p => p.Id == id)
+                .Select(p => 
+                    new {
+                        p.Name, p.Price
+                    })
+                .FirstOrDefault();
+
+            Console.WriteLine($"Name: {product.Name} Price: {product.Price}");
+        }
+    }
+
+    static void GetProductByName(string name)
+    {
+        using (var context = new ShopContext())
+        {
+            var products = context
+                .Products
+                .Where(p => p.Name.ToLower().Contains(name.ToLower()))
+                .Select(p => 
+                    new {
+                        p.Name, p.Price
+                    })
+                .ToList();
+
+            foreach (var p in products)
+            {
+                Console.WriteLine($"Name: {p.Name} Price: {p.Price}");
+            }
+        }
+    }
+
     static void Main()
     {
-        AddProduct();
+        GetProductByName("12");
     }
 }
