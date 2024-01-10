@@ -2,6 +2,18 @@
 using System.ComponentModel.DataAnnotations;
 using Microsoft.EntityFrameworkCore;
 
+// Adding Context Class
+public class ShopContext: DbContext
+{
+    public DbSet<Product> Products {get;set;}
+    public DbSet<Category> Categories {get;set;}
+
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+        optionsBuilder.UseSqlite("Data Source=shop.db");
+    }
+}
+
 // Adding Entity Classes
 public class Product
 {
@@ -15,18 +27,6 @@ public class Product
 
 public class Category
 {
-    // Adding Context Class
-    public class ShopContext: DbContext
-    {
-        public DbSet<Product> Products {get;set;}
-        public DbSet<Category> Categories {get;set;}
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseSqlite("Data Source=shop.db");
-        }
-    }
-
     // Primary Key
     public int Id { get; set; }
     [Required]
@@ -37,6 +37,12 @@ class Program
 {
     static void Main()
     {
-        
+        using (var db = new ShopContext())
+        {
+            var p = new Product {Name = "Monster Notebook", Price=30000};  
+            db.Products.Add(p);
+            db.SaveChanges();   
+            Console.WriteLine("Veriler Eklendi...");   
+        }
     }
 }
