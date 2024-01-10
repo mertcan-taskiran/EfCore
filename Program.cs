@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using Microsoft.EntityFrameworkCore;
 
 // Adding Entity Classes
 public class Product
@@ -14,6 +15,18 @@ public class Product
 
 public class Category
 {
+    // Adding Context Class
+    public class ShopContext: DbContext
+    {
+        public DbSet<Product> Products {get;set;}
+        public DbSet<Category> Categories {get;set;}
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseSqlite("Data Source=shop.db");
+        }
+    }
+
     // Primary Key
     public int Id { get; set; }
     [Required]
@@ -24,6 +37,6 @@ class Program
 {
     static void Main()
     {
-        Console.WriteLine("Merhaba, dünya!");
+
     }
 }
